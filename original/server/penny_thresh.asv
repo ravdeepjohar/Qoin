@@ -1,0 +1,21 @@
+function find_pennies(hue_img,sat_img,img_thresholded)
+% hsvimg = rgb2hsv(img);
+% simg = hsvimg(:,:,2);
+% vimg = hsvimg(:,:,3);
+% penny_mask = (simg < 0.25);
+% pennylabeled = bwlabel(imfill(logical(penny_mask),'holes')); 
+% pennyreg = regionprops(pennylabeled);
+% newpennys = zeros(size(img(:,:,1))); 
+% numpennys = 0;
+% for j = 1:length(pennyreg), 
+%     if (pennyreg(j).Area >Area_thresh), 
+%         numpennys = numpennys + 1;
+%         newpennys(find(pennylabeled == j)) = 1;
+%     end, 
+% end
+
+img_thresholded_labeled = bwlabel(img_thresholded);
+for j = 1:max(max(coins_reg))
+    coin_sat(j) = mean(mean(sat_img((sat_img.*(img_thresholded_labeled == j))>0)))
+    coin_hue(j) = mean(mean(hue_img((sat_img.*(img_thresholded_labeled == j))>0)))
+end

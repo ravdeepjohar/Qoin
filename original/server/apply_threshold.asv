@@ -1,0 +1,24 @@
+function img_thresholded = apply_threshold(img,hue_img,sat_img)
+hsv_img = rgb2hsv(img);
+
+% Determine hue of background
+[counts x] = imhist(hue_img);
+hue_peak = x(find(counts == max(counts),1));
+
+% Apply saturation thresholding
+sat_thresh = graythresh(sat_img);
+% img_binary = sat_img<sat_thresh;
+% img_binary = imclose(img_binary,strel('disk',10));
+% img_binary =imfill(img_binary,'holes');
+% img_binary = bwareaopen(img_binary,1000);
+
+thresh_factor = sat_img-sat_thresh-abs(hue_img-hue_peak);
+thresh_factor = thresh_factor-min(min(thresh_factor));
+thresh_factor = thresh_factor / max(max(thresh_factor));
+img_thresholded = thresh_factor<graythresh(thresh_factor);
+
+img_thresholded = imclose(img_thresholded,strel('disk',5));
+img_thresholded = imfill(img_thresholded,'holes');
+img_thresholded = bwareaopen(img_thresholded,1000);
+
+
