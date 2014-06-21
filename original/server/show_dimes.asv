@@ -1,6 +1,0 @@
-dime_img= false(size(img_thresholded_labeled));
-dime_ind = find(dime_logical);
-for j = 1:length(dime_ind), 
-    reg = iterator(penny_ind(j)); 
-    dime_img(penny_img == reg)=0;
-end

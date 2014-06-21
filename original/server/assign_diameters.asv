@@ -1,2 +1,0 @@
-function diameters = assign_diameters(penny_diam,absolute_diam);
-diameters = penny_diam*absolute_diam/absolute_diam(1);
